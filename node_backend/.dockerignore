@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Python virtual environments
+my-venv/
+venv/
+env/
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Editor settings
+.vscode/
+*.swp
+
+# Test and temp files
+*.tmp
+*.bak
+
+# Docker files you don't want in the image
+docker-compose.yml
+# .env
+# .env.*
+
+flask_backend/

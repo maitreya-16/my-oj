@@ -1,0 +1,118 @@
+services:
+  frontend:
+    image: maitreya16/oj-frontend:latest
+    container_name: oj-frontend
+    ports:
+      - "5173:5173"
+  backend:
+    build:
+      context: ./node_backend
+      dockerfile: Dockerfile
+    image: node-backend:latest
+    container_name: node-backend
+    ports:
+      - "3000:3000"
+    environment:
+      JWT_SECRET: your_super_secret_key
+      NODE_ENV: production
+      DB_URL: postgres://postgres:mysecretpass@postgres:5432/postgres
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: mysecretpass
+      DB_NAME: postgres
+      FLASK_API_BASE: http://server:5000
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  server:
+    build:
+      context: ./flask_backend
+      dockerfile: Dockerfile
+    image: flask-server:latest
+    container_name: flask-server
+    restart: always
+    command: sh -c "python load_problems/load_problems.py && python workers/server.py"
+    working_dir: /app
+    environment:
+      PYTHONPATH: /app
+    volumes:
+      - submissions:/app/submissions
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  worker:
+    build:
+      context: ./flask_backend
+      dockerfile: Dockerfile
+    image: flask-worker:latest
+    container_name: flask-worker
+    restart: always
+    command: >
+      celery -A workers.tasks worker
+            --loglevel=${LOG_LEVEL:-DEBUG}
+            --concurrency=3
+            --queues=submitQueue,runQueue,runSystemQueue
+    depends_on:
+      - redis
+    environment:
+      REDIS_BROKER_URL: redis://redis:6379/0
+      REDIS_BACKEND_URL: redis://redis:6379/0
+      BACKEND_URL: http://backend:3000
+      PYTHONPATH : /app
+    working_dir: /app/submissions
+    volumes:
+      - submissions:/app/submissions
+      - /var/run/docker.sock:/var/run/docker.sock
+    develop:
+      watch:
+        - action: rebuild
+          target: /app
+          path: ./flask_backend
+
+  postgres:
+    image: postgres:15
+    container_name: my-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpass
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    container_name: my-adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  redis:
+    image: redis:latest
+    container_name: my-redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    
+  redis-insights:
+    image: redis/redisinsight:latest
+    container_name: redis-insights
+    ports:
+      - "8001:5540"
+
+volumes:
+  pgdata:
+  redisdata:
+  submissions:
+    name: submissions

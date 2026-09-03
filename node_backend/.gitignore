@@ -1,0 +1,26 @@
+my-venv/
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+flask_backend/workers/submissions/
+# Ignore node_modules everywhere
+node_modules/
+
+# Ignore all .env files
+.env
+**/.env
+
+# Optional: Ignore build outputs (if using React/Vite etc.)
+build/
+dist/
+
+# Optional: Ignore log files
+*.log
+
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
