@@ -65,7 +65,7 @@ graph TB
 
     F -->|Store Result| E
 
-    F -->|Update Submission| C
+    B -->|Update Submission| C[(PostgreSQL)]
 
     E -->|Result Polling| B
 
