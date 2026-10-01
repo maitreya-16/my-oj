@@ -10,25 +10,57 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     depends_on:
-      - node-backend
+      - flask-server
     restart: unless-stopped
 
-  backend:
+  server:
     build:
-      context: ./node_backend
+      context: ./flask_backend
       dockerfile: Dockerfile
-    image: node-backend:latest
-    container_name: node-backend
-    ports:
-      - "3000:3000"
-    environment:
-      JWT_SECRET: your_super_secret_key
-      NODE_ENV: production
-      DB_URL: postgres://postgres:mysecretpass@postgres:5432/postgres
-      DB_HOST: postgres
-      DB_USER: postgres
-      DB_PASSWORD: mysecretpass
-      DB_NAME: postgres
-      FLASK_API_BASE: http://server:5000
-      FRONTEND_URL: http://localhost:5173
+    image: flask-server:latest
+    container_name: flask-server
     restart: always
+    command: sh -c "python load_problems/load_problems.py && python workers/server.py"
+    working_dir: /app
+    environment:
+      PYTHONPATH: /app
+    volumes:
+      - submissions:/app/submissions
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  worker:
+    build:
+      context: ./flask_backend
+      dockerfile: Dockerfile
+    image: flask-worker:latest
+    container_name: flask-worker
+    restart: always
+    command: >
+      celery -A workers.tasks worker
+            --loglevel=${LOG_LEVEL:-DEBUG}
+            --concurrency=3
+            --queues=submitQueue,runQueue,runSystemQueue
+    depends_on:
+      - redis
+    environment:
+      REDIS_BROKER_URL: redis://redis:6379/0
+      REDIS_BACKEND_URL: redis://redis:6379/0
+      BACKEND_URL: http://backend:3000
+      PYTHONPATH : /app
+    working_dir: /app/submissions
+    volumes:
+      - submissions:/app/submissions
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  redis:
+    image: redis:latest
+    container_name: my-redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+volumes:
+  redisdata:
+  submissions:
+    name: submissions
