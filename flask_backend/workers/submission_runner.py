@@ -109,13 +109,13 @@ def submit(submission_id, problem_id, code, language):
                     "total_test_case": total_test_cases,
                     "score": (index - 1) * 10,
                 }
-
+    
         return {
             "status": "accepted",
             "message": None,
             "failed_test_case": 0,
             "total_test_case": total_test_cases,
-            "score": total_test_cases * 100,
+            "score": total_test_cases * 10,
         }
     except Exception as error:
         logging.error("An error occurred during submission evaluation: %s", error)

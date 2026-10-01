@@ -152,7 +152,7 @@ exports.Login = async (req, res) => {
             return res.status(400).json({ error: "User not found" });
         }
 
-        if (!user || (event_id === 2 && user.rc === 0)) {
+        if (!user) {
             return res.status(400).json({ error: "User not found. Please register first" });
         }
         const validPassword = await bcrypt.compare(password, user.password);
@@ -174,32 +174,9 @@ exports.Login = async (req, res) => {
             { expiresIn: "2h" }
         );
 
-        // Get cookie settings from environment variables
-        const domain = process.env.COOKIE_DOMAIN || 'localhost';
-        const isSecure = process.env.COOKIE_SECURE === 'true';
-        const sameSite = process.env.COOKIE_SAME_SITE || 'None';
-
-        console.log('Cookie settings:', {
-            domain,
-            isSecure,
-            sameSite,
-            frontendUrl: process.env.FRONTEND_URL
-        });
-
-        res.cookie("token", token, {
-            httpOnly: true,    // Prevents JavaScript access
-            secure: true,  // Set via environment variable
-            sameSite: "None", // Set via environment variable
-            // domain: domain,    // Set domain based on environment
-            path: '/',         // Cookie available for all paths
-            maxAge: 2 * 60 * 60 * 1000, // 2 hours
-            // credentials: 'include' // Required for cross-origin requests
-        });
-
-        console.log('Response headers:', res.getHeaders());
         if (isEnded) {
             return res.status(501).json({
-                status: "ended", message: "Event has ended", user: {
+                status: "ended", message: "Event has ended", token, user: {
                     isVerified:true,
                     username: user.username,
                     event_id: user.event_id,
@@ -211,6 +188,7 @@ exports.Login = async (req, res) => {
         return res.status(200).json({
             message: "Logged in successfully",
             isVerified:true,
+            token,
             user: {
                 username: user.username,
                 event_id: user.event_id,
@@ -233,31 +211,8 @@ exports.GetProfile = async (req, res) => {
     }
 };
 
-// exports.Logout = async (req,res)=>{
-//     try{
-//         res.clearCookie("token");
-//         res.status(200).json({message:"User logged out successfully"});
-//     }
-//     catch(error){
-//         console.error("Error logging out:", error);
-//         res.status(500).json({ error: "Error logging out", details: error.message });
-//     }
-// };
-
 exports.Logout = async (req, res) => {
-    try {
-        res.clearCookie("token", {
-            httpOnly: true,
-            sameSite: "None",
-            secure: true,
-            path: '/'   // must match how you set it!
-        });
-        return res.status(200).json({ message: "User logged out successfully" });
-    }
-    catch (error) {
-        console.error("Error logging out:", error);
-        res.status(500).json({ error: "Error logging out", details: error.message });
-    }
+    return res.status(200).json({ message: "User logged out successfully" });
 };
 
 exports.gethistory = async (req, res) => {

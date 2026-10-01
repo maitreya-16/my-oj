@@ -2,12 +2,11 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const auth = (req,res,next)=>{
-    console.log("Cookies",req?.cookies);
-    if(!req.cookies||!req.cookies.token){
+    const authorization = req.headers.authorization;
+    const token = authorization?.match(/^Bearer\s+(\S+)$/i)?.[1];
+    if(!token){
         return res.status(403).json({error:'Access denied'});
     }
-
-const token = req.cookies.token;
 
 try{
     const decoded = jwt.verify(token,process.env.JWT_SECRET);

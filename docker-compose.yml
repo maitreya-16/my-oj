@@ -1,9 +1,9 @@
 services:
-  frontend:
-    image: maitreya16/oj-frontend:latest
-    container_name: oj-frontend
-    ports:
-      - "5173:5173"
+  # frontend:
+  #   image: maitreya16/oj-frontend:latest
+  #   container_name: oj-frontend
+  #   ports:
+  #     - "5173:5173"
   backend:
     build:
       context: ./node_backend
@@ -21,6 +21,7 @@ services:
       DB_PASSWORD: mysecretpass
       DB_NAME: postgres
       FLASK_API_BASE: http://server:5000
+      FRONTEND_URL: http://localhost:5173
     restart: always
     depends_on:
       postgres:

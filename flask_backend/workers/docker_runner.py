@@ -40,6 +40,11 @@ def create_and_start_container(config, submission_id):
         tty=True,
         working_dir=f"/app/submissions/{submission_id}",
         command="sleep infinity",
+        network_mode="none",
+        cap_drop=["ALL"],
+        pids_limit=64, 
+        cpu_period=100000,
+        cpu_quota=50000,
     )
     container.start()
     return container
