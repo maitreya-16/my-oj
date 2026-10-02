@@ -20,5 +20,5 @@ services:
     entrypoint: >
       sh -c "certbot certonly --webroot --webroot-path=/var/www/certbot 
       --email maitreyavaidyam@gmail.com 
-      --agree-tos --no-eff-email --staging -v
-      -d mainweb.credenz.co.in"
+      --agree-tos --no-eff-email -v
+      -d ctdoj.credenz.co.in"
