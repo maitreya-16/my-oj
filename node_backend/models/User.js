@@ -20,7 +20,7 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING(255),
     allowNull: true,
   },
-  rc: {
+  team_id: {
     type: DataTypes.STRING(255),
     allowNull: true,
   },

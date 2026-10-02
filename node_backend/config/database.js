@@ -1,8 +1,22 @@
 const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
 
 const sequelize = new Sequelize(process.env.DB_URL, {
+
   dialect: 'postgres',
+
+
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: true,
+      ca: fs.readFileSync(path.join(__dirname, '..', 'certs', 'global-bundle.pem')),
+    },
+  },
+
+
   protocol: 'postgres',
   logging: false,
   define: {
@@ -14,9 +28,7 @@ const sequelize = new Sequelize(process.env.DB_URL, {
 // Test connection function
 const testDBConnection = async () => {
   try {
-    console.log(DB_PASS);
     await sequelize.authenticate();
-    console.log(`✅ Connected to ${DB_DIALECT} database at ${DB_HOST}:${DB_PORT}`);
     return true;
   } catch (error) {
     console.error('❌ Unable to connect to the database:', error);
@@ -29,4 +41,3 @@ module.exports = sequelize;
 
 // Export test function separately if needed
 module.exports.testDBConnection = testDBConnection;
-
