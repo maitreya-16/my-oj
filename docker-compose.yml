@@ -45,7 +45,7 @@ services:
     environment:
       REDIS_BROKER_URL: redis://redis:6379/0
       REDIS_BACKEND_URL: redis://redis:6379/0
-      BACKEND_URL: http://backend:3000
+      BACKEND_URL: https://ctdoj.credenz.co.in
       PYTHONPATH : /app
     working_dir: /app/submissions
     volumes:
