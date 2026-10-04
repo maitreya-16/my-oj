@@ -167,7 +167,7 @@ exports.Login = async (req, res) => {
                 username: user.username,
                 event_id: event_id,
                 isjunior: user.isjunior,
-                team_id: user.rc,
+                team_id: user.team_id,
                 teamname:user.teamname
             },
             process.env.JWT_SECRET,
@@ -181,7 +181,7 @@ exports.Login = async (req, res) => {
                     username: user.username,
                     event_id: user.event_id,
                     isjunior: user.isjunior,
-                    team_id: user.rc
+                    team_id: user.team_id
                 }
             });
         }
