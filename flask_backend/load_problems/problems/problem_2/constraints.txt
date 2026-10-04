@@ -1,0 +1,2 @@
+1 ≤ |S| ≤ 100
+S contains only lowercase English letters.

@@ -1,0 +1,26 @@
+{
+  "title": "The Word Transformation Machine",
+  "description": "In the city of Numera, a mysterious text machine receives a collection of words and transforms some of them before printing the final result.\n\nThe machine follows a hidden rule. By observing the sample cases, determine how the machine transforms each word.\n\nYour task is to reproduce the output produced by the machine for every given word.",
+  "score": 50,
+  "input_format": "The first line contains an integer N, representing the number of words.\nEach of the following N lines contains one word consisting only of lowercase English letters.",
+  "output_format": "Print N lines.\nThe i-th line should contain the transformed form of the i-th word.",
+  "constraints": "1 <= N <= 100\n1 <= length of each word <= 100",
+  "isjunior": false,
+  "time_limit": 1,
+  "memory_limit": 128,
+  "event_id": 2,
+  "samples": [
+    {
+      "input": "4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis",
+      "output": "word\nl10n\ni18n\np43s"
+    },
+    {
+      "input": "5\ncat\ncomputer\nabcdefghijk\nhello\nabcdefghijklmnop",
+      "output": "cat\ncomputer\na9k\nhello\na14p"
+    },
+    {
+      "input": "3\na\nabcdefghij\nabcdefghijk",
+      "output": "a\nabcdefghij\na9k"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+6
+cat
+tree
+house
+planet
+journey
+notebook

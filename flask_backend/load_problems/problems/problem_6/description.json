@@ -1,0 +1,38 @@
+{
+  "title": "The Answering Lock",
+  "description": "Deep beneath the city of Numera lies a sealed vault guarded by a strange lock. Whenever a traveller enters a code of digits at its door, the lock answers by displaying a different code of its own. Nobody has ever written down how the lock decides its answer.\n\nThe rule it follows is hidden. Study the examples carefully, work out what the lock is doing, and reproduce its answer for any given code.",
+  "score": 50,
+  "input_format": "A single line containing the code S, a string consisting only of the digits 0-9. S may begin with 0.",
+  "output_format": "Print a single line containing the code that the lock answers with.",
+  "constraints": "1 <= |S| <= 100000\nS contains only the digits 0-9",
+  "isjunior": false,
+  "time_limit": 1,
+  "memory_limit": 128,
+  "event_id": 2,
+  "samples": [
+    {
+      "input": "5",
+      "output": "15"
+    },
+    {
+      "input": "112",
+      "output": "2112"
+    },
+    {
+      "input": "333333",
+      "output": "63"
+    },
+    {
+      "input": "1211",
+      "output": "111221"
+    },
+    {
+      "input": "007",
+      "output": "2017"
+    },
+    {
+      "input": "44444444444422",
+      "output": "12422"
+    }
+  ]
+}

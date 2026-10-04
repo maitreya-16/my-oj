@@ -1,0 +1,34 @@
+{
+  "title": "The Mystery",
+  "description": "Long ago, a group of researchers discovered a strange machine hidden inside an abandoned laboratory. The machine was unlike anything they had ever seen before. Whenever they entered some information into it, the machine immediately produced an output.\n\nThe researchers tried to understand how the machine worked, but the mechanism inside was completely sealed. There were no instructions, no labels, and no explanation of what happened inside the machine.\n\nAfter several experiments, they managed to record a few pairs of inputs and outputs. These records are the only clues available to them.\n\nYour task is to become a Reverse Engineer.\n\nStudy the given examples carefully and observe how the input is connected to the corresponding output. Somewhere behind the machine is a fixed rule, transformation, or pattern. The rule remains the same for every input, but it has been intentionally hidden from you.\n\nYour goal is not to reproduce the examples manually. Instead, you must discover the hidden logic used by the machine and implement it so that it can correctly process new inputs that were never shown in the examples.\n\nRemember: the machine always follows the same mysterious rule. The examples are your only clues.\n\nCan you uncover the secret mechanism and reproduce the machine's output?",
+  "score": 50,
+  "input_format": "The input contains a single string S consisting of lowercase English letters.",
+  "output_format": "Print a single integer representing the hidden value produced by the system.",
+  "constraints": "1 <= |S| <= 100\nS contains only lowercase English letters.",
+  "isjunior": false,
+  "time_limit": 1,
+  "memory_limit": 128,
+  "event_id": 2,
+  "samples": [
+    {
+      "input": "hello",
+      "output": "2"
+    },
+    {
+      "input": "programming",
+      "output": "3"
+    },
+    {
+      "input": "aeiou",
+      "output": "5"
+    },
+    {
+      "input": "rhythm",
+      "output": "0"
+    },
+    {
+      "input": "education",
+      "output": "5"
+    }
+  ]
+}

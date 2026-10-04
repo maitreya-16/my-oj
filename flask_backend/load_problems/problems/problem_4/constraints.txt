@@ -1,0 +1,2 @@
+1 ≤ |S| ≤ 10^5
+S may contain uppercase letters, lowercase letters, digits, spaces, and special characters.

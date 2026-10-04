@@ -1,0 +1,2 @@
+1 ≤ N ≤ 100
+1 ≤ length of each word ≤ 100

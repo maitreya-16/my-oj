@@ -1,0 +1,5 @@
+2 ≤ N ≤ 1000
+1 ≤ M ≤ 2000
+1 ≤ U, V ≤ N
+1 ≤ W ≤ 10^5
+The graph contains no self-loops and no multiple edges.
