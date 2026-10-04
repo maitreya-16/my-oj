@@ -2,6 +2,10 @@ from flask import Flask,request,jsonify
 from tasks import run_code, run_system_code , submit_code
 app = Flask(__name__)
 
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok"}), 200
+
 @app.route("/enqueue/run", methods=["POST"])
 def enqueue_run():
     data = request.get_json()
