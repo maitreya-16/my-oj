@@ -1,0 +1,58 @@
+Problem: No Repaints Allowed
+
+Statement:
+A signal relay is modeled as a doubly linked list of railway cars. Each car has a fixed color:
+  0 -> Red
+  1 -> Yellow
+  2 -> Green
+
+Company regulations strictly forbid repainting any car — you must never modify a node's value. The only permitted operation is re-coupling: changing the next and prev pointers of the cars to reorder them.
+
+Your task is to rearrange the relay so that all Red cars come before all Yellow cars, which come before all Green cars — using only pointer re-coupling, in a single traversal of the list.
+
+Additionally:
+- The relative order of cars within the same color must be preserved (the rearrangement must be stable).
+- You must return the final head of the list and the total number of re-coupling operations performed.
+
+Definition of Re-coupling Operations:
+A re-coupling operation is defined as detaching a car from its current position in the list and attaching it elsewhere. Simply advancing a pointer without detaching does not count.
+To minimize the operations:
+- If the relay is already in non-decreasing order of colors (all Red cars before all Yellow cars, and all Yellow cars before all Green cars), no cars need to be moved, so the operation count is 0.
+- Otherwise, the cars belonging to the most frequent color can remain in place to serve as the backbone chain, while every car of the other two colors is detached and spliced into its proper sorted chain. Thus, the minimum number of re-coupling operations is:
+    operations = n - max(count(0), count(1), count(2))
+
+Input Format:
+The first line contains an integer t — the number of test cases.
+Each test case consists of two lines:
+  First line: an integer n — the number of cars in the linked list.
+  Second line: n space-separated integers (each 0, 1, or 2) — the values of the cars in the linked list, given from head to tail.
+
+Output Format:
+For each test case, print two lines:
+  First line: n space-separated integers — the values of the cars in the final relay, head to tail (0s, then 1s, then 2s, preserving original relative order within each color).
+  Second line: a single integer — the total number of re-coupling operations performed.
+
+Example 1:
+Input:
+1
+6
+2 0 1 0 2 1
+Output:
+0 0 1 1 2 2
+4
+Explanation:
+Original relay (head -> tail): 2, 0, 1, 0, 2, 1.
+Final relay must be: 0, 0, 1, 1, 2, 2 with stable order preserved.
+The relay is not already sorted. The color frequencies are: count(0)=2, count(1)=2, count(2)=2.
+The maximum frequency is 2. The minimum number of re-coupling operations is 6 - 2 = 4.
+
+Example 2:
+Input:
+1
+4
+1 1 1 1
+Output:
+1 1 1 1
+0
+Explanation:
+The relay is already fully grouped by color (all Yellow), so 0 re-coupling operations are needed.

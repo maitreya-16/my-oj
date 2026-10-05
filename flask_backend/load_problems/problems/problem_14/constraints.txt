@@ -1,0 +1,6 @@
+1 <= t <= 1000
+1 <= n <= 10^5
+Each car value in {0, 1, 2}
+Sum of n over all test cases <= 5 * 10^5
+Node values must never be modified — only pointers may be changed
+Must run in O(n) time and O(1) extra space

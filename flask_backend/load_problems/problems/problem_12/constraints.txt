@@ -1,0 +1,1 @@
+1 ≤ t ≤ 10^4, 1 ≤ |s| ≤ 10^5, sum of lengths over all test cases ≤ 3×10^5, s contains only lowercase English letters

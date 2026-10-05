@@ -1,0 +1,4 @@
+1 <= t <= 100
+1 <= k <= n <= 2 * 10^5
+-10^9 <= house_position[i] <= 10^9
+Sum of n over all test cases <= 2 * 10^5

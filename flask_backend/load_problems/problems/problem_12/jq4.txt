@@ -1,0 +1,34 @@
+Problem: Shohag Loves Strings
+
+Statement:
+Shohag has discovered that for any string p, there's a special property: the number of distinct non-empty substrings it contains. Your challenge is to find a non-empty substring p within the given string s such that the count of distinct non-empty substrings in p is even. If no such substring exists, output -1.
+
+Input Format:
+The first line contains t (1 ≤ t ≤ 10^4), the number of test cases. For each test case, a single string s (1 ≤ |s| ≤ 10^5) consisting of lowercase English letters.
+
+Output Format:
+For each test case, output a non-empty substring p of s that has an even number of distinct non-empty substrings, or -1 if no such substring exists.
+
+Example 1:
+Input:
+a
+Output:
+-1
+Explanation:
+Single character has 1 distinct substring (odd)
+
+Example 2:
+Input:
+aa
+Output:
+aa
+Explanation:
+Length 2 with same chars = 2 distinct substrings (even)
+
+Example 3:
+Input:
+abc
+Output:
+abc
+Explanation:
+Three different chars = 6 distinct substrings (even)

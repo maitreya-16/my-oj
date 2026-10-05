@@ -1,0 +1,5 @@
+bloomDay.length == n
+1 <= n <= 10^5
+1 <= bloomDay[i] <= 10^9
+1 <= m <= 10^6
+1 <= k <= n

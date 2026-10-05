@@ -1,0 +1,37 @@
+Problem: The Twin Counters of Pashmak
+
+Statement:
+Parmida has set a puzzle for Pashmak, and this time he really needs your help. She gives him a row of n numbers a1, a2, ..., an. For a number x and a segment of positions from l to r, let f(l, r, x) be how many times x appears inside that segment. Pashmak must count every pair of positions (i, j) with i < j such that the number at position i has appeared strictly more times in the prefix a1..ai than the number at position j appears in the suffix aj..an. Formally, count pairs (i, j) with 1 <= i < j <= n and f(1, i, a_i) > f(j, n, a_j). Find this count for him.
+
+Input Format:
+The first line contains a single integer n (1 <= n <= 2*10^5). The second line contains n space-separated integers a1, a2, ..., an (1 <= a_i <= 10^9).
+
+Output Format:
+Print a single integer: the number of pairs (i, j) with i < j and f(1, i, a_i) > f(j, n, a_j).
+
+Example 1:
+Input:
+7
+1 2 1 1 2 2 1
+Output:
+8
+Explanation:
+Given sample: answer is 8
+
+Example 2:
+Input:
+3
+1 1 1
+Output:
+1
+Explanation:
+Given sample: all equal, only the pair (1,3) works
+
+Example 3:
+Input:
+5
+1 2 3 4 5
+Output:
+0
+Explanation:
+Given sample: all distinct, so no pair works

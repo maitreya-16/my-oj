@@ -1,0 +1,48 @@
+Problem: Router Range Allocation
+
+Statement:
+A telecom company wants to install k routers along a straight street to provide internet coverage to n houses. The houses are located at given integer positions on a number line.
+
+Each router has the same integer range r. A router placed at position p covers every house located in the interval [p - r, p + r].
+
+Routers can be placed at any integer position on the number line (not necessarily at a house). Each house must be covered by at least one router.
+
+Your task is to determine the minimum possible value of r such that all n houses can be covered using at most k routers.
+
+Input Format:
+The first line contains an integer t — the number of test cases.
+
+Each test case consists of two lines:
+  First line: two integers n and k — the number of houses and the number of routers available.
+  Second line: n integers — the positions of the houses (not necessarily sorted, may contain duplicates).
+
+Output Format:
+For each test case, print a single integer — the minimum range r required.
+
+Example 1:
+Input:
+1
+5 2
+1 2 4 8 9
+Output:
+2
+Explanation:
+Sorted house positions: [1, 2, 4, 8, 9].
+With r = 2, one router at position 3 covers [1, 5], covering houses 1, 2, 4.
+Another router at position 10 covers [8, 12], covering houses 8, 9.
+All 5 houses are covered using 2 routers, and r = 1 is insufficient with 2 routers. Hence, the answer is 2.
+
+Example 2:
+Input:
+1
+6 3
+-5 -3 0 3 5 100
+Output:
+3
+Explanation:
+Sorted house positions: [-5, -3, 0, 3, 5, 100].
+With r = 3:
+- Router 1 placed at -2 covers [-5, 1], covering houses {-5, -3, 0}.
+- Router 2 placed at 6 covers [3, 9], covering houses {3, 5}.
+- Router 3 placed at 100 covers [97, 103], covering house {100}.
+All 6 houses are covered using 3 routers. With r = 2, at least 4 routers would be required, so the minimum range is 3.

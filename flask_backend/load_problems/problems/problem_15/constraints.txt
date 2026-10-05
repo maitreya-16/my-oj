@@ -1,0 +1,1 @@
+1 <= n <= 2*10^5, 1 <= a_i <= 10^9. The answer can exceed the 32-bit integer range.
