@@ -1,9 +1,9 @@
 {
-  "title": "The Mystery",
-  "description": "Long ago, a group of researchers discovered a strange machine hidden inside an abandoned laboratory. The machine was unlike anything they had ever seen before. Whenever they entered some information into it, the machine immediately produced an output.\n\nThe researchers tried to understand how the machine worked, but the mechanism inside was completely sealed. There were no instructions, no labels, and no explanation of what happened inside the machine.\n\nAfter several experiments, they managed to record a few pairs of inputs and outputs. These records are the only clues available to them.\n\nYour task is to become a Reverse Engineer.\n\nStudy the given examples carefully and observe how the input is connected to the corresponding output. Somewhere behind the machine is a fixed rule, transformation, or pattern. The rule remains the same for every input, but it has been intentionally hidden from you.\n\nYour goal is not to reproduce the examples manually. Instead, you must discover the hidden logic used by the machine and implement it so that it can correctly process new inputs that were never shown in the examples.\n\nRemember: the machine always follows the same mysterious rule. The examples are your only clues.\n\nCan you uncover the secret mechanism and reproduce the machine's output?",
+  "title": "The Hidden Mystery",
+  "description": "Deep inside an abandoned research facility lies a strange machine that studies numbers. Whenever numbers are entered, the machine produces its answer. The researchers who discovered it could not determine what happens inside the machine.\n\nThe rule behind its response is hidden. Study the examples carefully, uncover what the machine is looking for, and reproduce its answer for any given sequence.",
   "score": 50,
-  "input_format": "The first line contains an integer N.\nThe second line contains N space-separated integers.",
-  "output_format": "Print a single integer representing the maximum length of a continuous strictly increasing portion.",
+  "input_format": "The first line contains an integer N. The second line contains N integers representing the sequence.",
+  "output_format": "Print a single integer representing the hidden value produced by the system.",
   "constraints": "1 <= N <= 100000\n-1000000000 <= A[i] <= 1000000000",
   "isjunior": false,
   "time_limit": 1,
@@ -11,16 +11,24 @@
   "event_id": 2,
   "samples": [
     {
-      "input": "8\n1 2 3 2 4 5 6 1",
-      "output": "4"
+      "input": "5\n1 2 3 4 5",
+      "output": "0"
     },
     {
-      "input": "5\n5 4 3 2 1",
+      "input": "4\n1 3 4 2",
       "output": "1"
     },
     {
-      "input": "6\n1 2 3 4 5 6",
-      "output": "6"
+      "input": "4\n1 3 2 1",
+      "output": "1"
+    },
+    {
+      "input": "7\n1 3 2 4 5 6 5",
+      "output": "2"
+    },
+    {
+      "input": "5\n5 4 3 2 1",
+      "output": "0"
     }
   ]
 }
