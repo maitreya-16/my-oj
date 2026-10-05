@@ -26,6 +26,7 @@ def load_data(pid, path):
         i += 1
 
     r.set(f"{pid}/count", i - 1)
+    print(f"Loaded {i - 1} input/output pairs for problem {pid}")
 
     solution_path = os.path.join(path, "solution.cpp")
     if os.path.exists(solution_path):
