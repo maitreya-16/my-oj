@@ -55,7 +55,7 @@ const Submission = sequelize.define('submission', {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
     },
-    verdict: { type: DataTypes.STRING, allowNull: true },
+    verdict: { type: DataTypes.TEXT, allowNull: true },
 }, {
     timestamps: true,
     createdAt: 'created_at',
