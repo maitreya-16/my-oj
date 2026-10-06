@@ -1,3 +1,5 @@
-1 <= s.length <= 1000
-1 <= part.length <= 1000
+1 <= s.length <= 10^6
+
+1 <= part.length <= 10^6
+
 s and part consist only of lowercase English letters.

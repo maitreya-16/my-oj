@@ -1,66 +1,129 @@
 Remove All Occurrences of a Substring
-Description
-Given two strings s and part, repeatedly perform the following operation until part no longer occurs in s:
-Find the leftmost occurrence of the substring part in s.
-Remove that occurrence from s.
-Return the final string after all occurrences of part have been removed.
-A substring is a contiguous sequence of characters within a string.
-Input Format
-The first line contains the string s.
-The second line contains the string part.
-Output Format
-Print the final string after removing all occurrences of part.
-Sample Test Case 1
-Input:
-daabcbaabcbc
-abc
-Output:
-dab
-Explanation:
-The operations are:
-daabcbaabcbc
-    ↓ remove "abc"
-dabaabcbc
-    ↓ remove "abc"
-dababc
-    ↓ remove "abc"
-dab
-Therefore, the final string is:
-dab
-Sample Test Case 2
-Input:
-axxxxyyyyb
-xy
-Output:
-ab
-Explanation:
-The operations are:
-axxxxyyyyb
-    ↓ remove "xy"
-axxxyyyb
-    ↓ remove "xy"
-axxyyb
-    ↓ remove "xy"
-axyb
-    ↓ remove "xy"
-ab
-Therefore, the final string is:
-ab
-Sample Test Case 3
-Input:
-abcabc
-abc
-Output:
-Explanation:
-Both occurrences of abc are removed:
-abcabc
-  ↓
-abc
-  ↓
-""
-The final string is empty.
-Constraints
-1 <= s.length <= 1000
-1 <= part.length <= 1000
-s and part consist only of lowercase English letters.
 
+Description
+
+Given two strings s and part, repeatedly perform the following operation until part no longer occurs in s:
+
+Find the leftmost occurrence of the substring part in s.
+
+Remove that occurrence from s.
+
+Return the final string after all occurrences of part have been removed.
+
+A substring is a contiguous sequence of characters within a string.
+
+Input Format
+
+The first line contains the string s.
+
+The second line contains the string part.
+
+Output Format
+
+Print the final string after removing all occurrences of part.
+
+Sample Test Case 1
+
+Input:
+
+daabcbaabcbc
+
+abc
+
+Output:
+
+dab
+
+Explanation:
+
+The operations are:
+
+daabcbaabcbc
+
+↓ remove "abc"
+
+dabaabcbc
+
+↓ remove "abc"
+
+dababc
+
+↓ remove "abc"
+
+dab
+
+Therefore, the final string is:
+
+dab
+
+Sample Test Case 2
+
+Input:
+
+axxxxyyyyb
+
+xy
+
+Output:
+
+ab
+
+Explanation:
+
+The operations are:
+
+axxxxyyyyb
+
+↓ remove "xy"
+
+axxxyyyb
+
+↓ remove "xy"
+
+axxyyb
+
+↓ remove "xy"
+
+axyb
+
+↓ remove "xy"
+
+ab
+
+Therefore, the final string is:
+
+ab
+
+Sample Test Case 3
+
+Input:
+
+abcabc
+
+abc
+
+Output:
+
+Explanation:
+
+Both occurrences of abc are removed:
+
+abcabc
+
+↓
+
+abc
+
+↓
+
+""
+
+The final string is empty.
+
+Constraints
+
+1 <= s.length <= 10^6
+
+1 <= part.length <= 10^6
+
+s and part consist only of lowercase English letters.
