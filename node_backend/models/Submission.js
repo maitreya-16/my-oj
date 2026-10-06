@@ -56,9 +56,9 @@ const Submission = sequelize.define('submission', {
         defaultValue: DataTypes.NOW
     },
     verdict: { type: DataTypes.STRING, allowNull: true },
-    created_at: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },
-    updated_at: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW }
 }, {
-    timestamps: false
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 });
 module.exports = Submission;
