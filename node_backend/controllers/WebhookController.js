@@ -1,5 +1,6 @@
 const Submission = require("../models/Submission.js");
 const Leaderboard = require("../models/Leaderboard.js");
+const Problem = require("../models/Problem.js");
 // const { where } = require("sequelize");
 const { sendEvent } = require('./sse');
 
@@ -26,6 +27,13 @@ async function updateDatabase(submission_id, status, message, failed_test_case, 
   });
 
   if (!leaderboardEntry) {
+
+    const problem = await Problem.findOne({ where: { id: problem_id } });
+    if (!problem) {
+      console.log("Problem not found for problem_id:", problem_id);
+      return;
+    }
+
     console.log("Creating new leaderboard entry for team:", team_id);
     leaderboardEntry = await Leaderboard.create({
       team_id,
@@ -37,7 +45,8 @@ async function updateDatabase(submission_id, status, message, failed_test_case, 
       problem_4: 0,
       total_score: 0,
       total_submissions: 0,
-      last_submission_time: new Date()
+      last_submission_time: new Date(),
+      isjunior: problem.isjunior,
     });
   }
 
