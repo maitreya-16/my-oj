@@ -65,6 +65,7 @@ def compile_code(container, config):
     stderr = stderr.decode("utf-8") if stderr else ""
 
     container.update(mem_limit=config["memory_limit"])
+    container.reload()
     logging.info("Memory limit updated to %s", container.attrs["HostConfig"]["Memory"])
 
     logging.info("Compilation completed with exit code %s", exit_code)
