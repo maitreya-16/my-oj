@@ -50,30 +50,43 @@ def create_and_start_container(config, submission_id):
     return container
 
 
+
 def compile_code(container, config):
     if not config.get("compile_cmd"):
         return None
 
+    # Increase memory for compilation
     container.update(mem_limit="512m")
+    container.reload()
+
     logging.info("Memory limit updated to 512m")
     logging.info("Current memory limit: %s", container.attrs["HostConfig"]["Memory"])
 
     exit_code, (stdout, stderr) = container.exec_run(
-        config["compile_cmd"], demux=True
+        config["compile_cmd"],
+        demux=True
     )
+
     stdout = stdout.decode("utf-8") if stdout else ""
     stderr = stderr.decode("utf-8") if stderr else ""
 
+    # Restore runtime memory limit
     container.update(mem_limit=config["memory_limit"])
     container.reload()
-    logging.info("Memory limit updated to %s", container.attrs["HostConfig"]["Memory"])
+
+    logging.info("Memory limit restored to %s", container.attrs["HostConfig"]["Memory"])
 
     logging.info("Compilation completed with exit code %s", exit_code)
+
     if exit_code != 0:
         logging.error("Compilation Error: %s", stderr)
-        return {"status": "failed", "message": stderr}
+        return {
+            "status": "failed",
+            "message": stderr
+        }
 
     return None
+
 
 
 def run_single_test_case(container, config):
