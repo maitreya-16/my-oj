@@ -79,13 +79,15 @@ def submit(submission_id, problem_id, code, language):
         work_dir = create_working_directory(submission_id)
         write_content_to_file(work_dir, decode(code), f"Main{config['extension']}")
 
+        test_cases = get_test_cases(problem_id)
+        total_test_cases = len(test_cases)
+
         container = create_and_start_container(config, submission_id)
         compile_result = compile_code(container, config)
         if compile_result:
+            compile_result["failed_test_case"] = 0
+            compile_result["total_test_case"] = total_test_cases
             return compile_result
-
-        test_cases = get_test_cases(problem_id)
-        total_test_cases = len(test_cases)
 
         for index, test_case in enumerate(test_cases, start=1):
             write_content_to_file(work_dir, decode(test_case["input"]), "input.txt")
