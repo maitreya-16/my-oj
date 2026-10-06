@@ -1,34 +1,52 @@
-Problem: Shohag Loves Strings
+Title: Shohag Loves Strings
 
-Statement:
-Shohag has discovered that for any string p, there's a special property: the number of distinct non-empty substrings it contains. Your challenge is to find a non-empty substring p within the given string s such that the count of distinct non-empty substrings in p is even. If no such substring exists, output -1.
+Description:
+Shohag has discovered that for any string p, there's a special property: the number of distinct non-empty substrings it contains. Your challenge is to find a non-empty substring p within the given string s such that the count of distinct non-empty substrings in p is even. If no such substring exists, output -1. If several substrings qualify, output the shortest one; if several shortest ones exist, output the leftmost one (the one that starts earliest in s).
 
 Input Format:
-The first line contains t (1 ≤ t ≤ 10^4), the number of test cases. For each test case, a single string s (1 ≤ |s| ≤ 10^5) consisting of lowercase English letters.
+The first line contains t (1 ≤ t ≤ 10^4), the number of test cases. Each of the next t lines contains a single string s (1 ≤ |s| ≤ 10^5) consisting of lowercase English letters.
 
 Output Format:
-For each test case, output a non-empty substring p of s that has an even number of distinct non-empty substrings, or -1 if no such substring exists.
+For each test case, output one line: the shortest non-empty substring p of s that has an even number of distinct non-empty substrings (the leftmost one if several of the same length exist), or -1 if no such substring exists.
 
-Example 1:
-Input:
-a
-Output:
--1
-Explanation:
-Single character has 1 distinct substring (odd)
+Score: 75
 
-Example 2:
-Input:
-aa
-Output:
-aa
-Explanation:
-Length 2 with same chars = 2 distinct substrings (even)
+isjunior: True
 
-Example 3:
-Input:
-abc
-Output:
-abc
-Explanation:
-Three different chars = 6 distinct substrings (even)
+Time Limit: 1
+
+Memory Limit: 256
+
+Event ID: 1
+
+Sample Explanations:
+
+Sample 1:
+'a' is the only substring and has 1 distinct substring (odd), so the answer is -1.
+
+Sample 2:
+'aa' has 2 distinct substrings: 'a' and 'aa' (even). Length 1 never works (1 distinct substring).
+
+Sample 3:
+No two adjacent characters are equal, so no length-2 substring works ('ab' has a, b, ab = 3). 'abc' has a, b, c, ab, bc, abc = 6 distinct substrings (even).
+
+Sample 4:
+The shortest valid substring has length 2: 'aa' (substrings 'a' and 'aa' = 2, even). 'abaa' (8 distinct) is also valid but longer.
+
+Sample 5:
+'aa' (2 distinct substrings: 'a', 'aa') is valid and is the leftmost shortest one. The whole string 'aaa' has 3 (odd).
+
+Sample 6:
+Alternating string: no two equal neighbours and s[i] == s[i+2] everywhere. A substring of length L >= 2 has exactly 2 distinct substrings of each length 1..L-1 and 1 of length L, i.e. 2(L-1)+1 (odd); a single character has 1 (odd). So no substring qualifies. (length 170)
+
+Sample 7:
+Alternating string: no two equal neighbours and s[i] == s[i+2] everywhere. A substring of length L >= 2 has exactly 2 distinct substrings of each length 1..L-1 and 1 of length L, i.e. 2(L-1)+1 (odd); a single character has 1 (odd). So no substring qualifies. (length 570)
+
+Sample 8:
+Alternating string: no two equal neighbours and s[i] == s[i+2] everywhere. A substring of length L >= 2 has exactly 2 distinct substrings of each length 1..L-1 and 1 of length L, i.e. 2(L-1)+1 (odd); a single character has 1 (odd). So no substring qualifies. (length 1000)
+
+Sample 9:
+Alternating string: no two equal neighbours and s[i] == s[i+2] everywhere. A substring of length L >= 2 has exactly 2 distinct substrings of each length 1..L-1 and 1 of length L, i.e. 2(L-1)+1 (odd); a single character has 1 (odd). So no substring qualifies. (length 4000)
+
+Sample 10:
+Alternating string: no two equal neighbours and s[i] == s[i+2] everywhere. A substring of length L >= 2 has exactly 2 distinct substrings of each length 1..L-1 and 1 of length L, i.e. 2(L-1)+1 (odd); a single character has 1 (odd). So no substring qualifies. (length 100000, the maximum)
